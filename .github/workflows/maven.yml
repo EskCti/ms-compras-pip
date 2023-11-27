@@ -51,3 +51,24 @@ jobs:
         name: artifact
         path: ./mscompra/target/mscompra.war
 
+  deploy:
+    needs: build
+    name: Deploy on AWS Elastic Beanstall
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download war
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v20
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          use_existing_version_if_available: true
+          wait_for_environment_recovery: 120
+          application_name: ms-compra-pip
+          environment_name: Ms-compra-pip-env
+          version_label: latest-${{github.sha}}
+          region: us-east-1
+          deployment_package: mscompra.war
