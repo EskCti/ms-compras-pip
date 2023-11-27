@@ -1,0 +1,1 @@
+ INSERT INTO TB_ORDERS (id, zip_code, cpf_customer, purchase_date, email, name, product, value_order) VALUES (1, '56320000', '872.286.830-56', '2022-01-01', 'lucas.barros@hotmail.com', 'Lucas Barros', 1, 1000)
