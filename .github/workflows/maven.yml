@@ -67,8 +67,8 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           use_existing_version_if_available: true
           wait_for_environment_recovery: 120
-          application_name: ms-compra-pip
-          environment_name: Ms-compra-pip-env
+          application_name: ms-compra-pip-esk
+          environment_name: Ms-compra-pip-esk-env
           version_label: latest-${{github.sha}}
           region: us-east-1
           deployment_package: mscompra.war
